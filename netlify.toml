@@ -1,4 +1,0 @@
-[build]
-base = "hlkart/"
-publish = "hlkart/build/"
-command = "npm run build
