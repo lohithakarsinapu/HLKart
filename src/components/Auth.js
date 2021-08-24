@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import "../styles/Style_auth.css";
 import { useForm } from "react-hook-form";
+import { UseUserContext } from "../context/userContext";
 
 function Auth() {
   const {
@@ -9,13 +10,20 @@ function Auth() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
   const [userInfo, setUerInfo] = useState();
+  
+  const {logIn} = UseUserContext();
+
   const onSubmit = (data) => {
+    logIn(data.username)
     setUerInfo(data);
     console.log(data);
   };
   console.log(errors);
-  return (
+
+  const {user} = UseUserContext();
+  return ( user.isGuestUser? 
     <div className="container">
       <pre>{JSON.stringify(userInfo, undefined, 2)}</pre>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -28,7 +36,7 @@ function Auth() {
               type="text"
               name="username"
               placeholder="UserName"
-              {...register("username", { required: "Username is Required" })}
+              {...register("username", { required: "Username is Required" })} 
             ></input>
             <p>{errors.username?.message}</p>
           </div>
@@ -37,11 +45,12 @@ function Auth() {
             <label>Email</label>
             <input
               type="email"
-              name="email"
+              name="email" 
               placeholder="Email"
               {...register("email", { required: "Email is Required" })}
             ></input>
             <p>{errors.email?.message}</p>
+          
           </div>
           <div className="field">
             <label>Password</label>
@@ -65,9 +74,12 @@ function Auth() {
           </div>
 
           <button className="fluid ui button blue">Submit</button>
+     
         </div>
       </form>
     </div>
+  :
+  <div>Home</div>
   );
 }
 

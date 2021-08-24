@@ -5,6 +5,7 @@ export default class Footer extends Component {
         return (
             <div>
               **********  This is Footer Component *************
+            
             </div>
         )
     }

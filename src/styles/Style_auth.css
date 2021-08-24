@@ -11,17 +11,20 @@ body{
     align-items:center;
     height:100vh;
     margin:auto;
+    width:600px;
 }
 
 .container >form{
     width:70%;
     border:10px solid #dfdfdf;
-    padding:20px;
+    padding:50px;
     border-radius:5px;
     background:#fff;
 
 }
-
+button{
+    padding-left:50px
+}
 pre{
     width:70%;
     color:#fff;
